@@ -116,6 +116,7 @@ void loop() {
       int val = EEPROM.read(0);
       if (val != 0xff) {
         door = val;
+        led = door - 1;
       }
 
       eeprom_read = 1;
@@ -187,7 +188,6 @@ void loop() {
       change = 1;
     }
 
-
     if (change) {
       pixels.clear(); // Set all pixel colors to 'off'
 
@@ -208,7 +208,6 @@ void loop() {
 
       pixels.show();   // Send the updated pixel colors to the hardware.
     }
-
 #endif
 
     change = 0;
