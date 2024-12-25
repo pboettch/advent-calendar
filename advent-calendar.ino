@@ -85,18 +85,18 @@ static enum {
 
 void loop() {
   if (state == START) {
-      pixels.clear(); // Set all pixel colors to 'off'
+    pixels.clear(); // Set all pixel colors to 'off'
 
-      for (int i = 0; i < NUMPIXELS; i++) {
-        delay(250);
-        pixels.setPixelColor(i, pixels.Color(50, 50, 0));
-        pixels.show();   // Send the updated pixel colors to the hardware.
-      }
-      state = NORMAL;
-      delay(1000);
+    for (int i = 0; i < NUMPIXELS; i++) {
+      delay(250);
+      pixels.setPixelColor(i, pixels.Color(50, 50, 0));
+      pixels.show();   // Send the updated pixel colors to the hardware.
+    }
+    state = NORMAL;
+    delay(1000);
   } else if (state == NORMAL) {
 
-  #if 10
+#if 10
     static int direction_change_count = 0;
     static int light = 0, val;
 
@@ -137,9 +137,9 @@ void loop() {
         //digitalWrite(5, LOW);
       }
     }
-  #endif
+#endif
 
-  #if 10
+#if 10
     encoder->tick(); // just call tick() to check the state.
 
     int newPos = encoder->getPosition();
@@ -191,6 +191,7 @@ void loop() {
     if (change) {
       pixels.clear(); // Set all pixel colors to 'off'
 
+      // GRB
       for (int i = 0; i < NUMPIXELS; i++) {
         if (leds[i] == STREET)
           pixels.setPixelColor(i, pixels.Color(50* street, 50* street, 50* street));
@@ -205,11 +206,10 @@ void loop() {
         }
       }
 
-      // GRB
       pixels.show();   // Send the updated pixel colors to the hardware.
     }
 
-  #endif
+#endif
 
     change = 0;
   }
